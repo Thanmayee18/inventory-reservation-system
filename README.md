@@ -1,36 +1,89 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Inventory Reservation System
 
-## Getting Started
+This project is a simple inventory reservation system built using Next.js, TypeScript, Prisma, SQLite, and Tailwind CSS.
 
-First, run the development server:
+## Features
+
+- Product listing page
+- Warehouse stock display
+- Reserve product functionality
+- Reservation creation
+- Stock reservation handling
+- Prevents overbooking when stock is unavailable
+- Reservation details page
+- Confirm reservation functionality
+- Dynamic API routes using Next.js App Router
+
+---
+
+## Tech Stack
+
+- Next.js
+- TypeScript
+- Prisma ORM
+- SQLite
+- Tailwind CSS
+
+---
+
+## How to Run Locally
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run Prisma migration:
+
+```bash
+npx prisma migrate dev
+```
+
+Seed sample data:
+
+```bash
+npx tsx prisma/seed.ts
+```
+
+Start development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open browser:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```txt
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## Reservation Logic
 
-To learn more about Next.js, take a look at the following resources:
+When a user reserves a product:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- Available stock is checked
+- Reserved units are incremented
+- A reservation entry is created
+- If stock is unavailable, API returns 409 error
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+The reservation flow uses Prisma transactions to reduce race condition issues during concurrent reservations.
 
-## Deploy on Vercel
+---
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Future Improvements
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- Reservation expiry timer
+- Automatic reservation release
+- Cancel reservation functionality
+- Hosted PostgreSQL database
+- Better UI styling
+- Authentication system
+
+---
+
+## Author
+
+Thanmayee Reddy
